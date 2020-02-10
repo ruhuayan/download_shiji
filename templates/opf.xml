@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://www.idpf.org/2007/opf" version="2.0" unique-identifier="BookId">
+
+    <metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <dc:title>{{ title }}</dc:title>
+        <dc:language>zh-cn</dc:language>
+        <dc:creator>{{ author }}</dc:creator>
+        <meta name="cover" content="cover_image"/>
+    </metadata>
+
+    <manifest>
+        <item id="cover_image" href="cover.jpg" media-type="image/jpeg"/>
+        <item id="toc" media-type="application/x-dtbncx+xml" href="toc.ncx"/>
+        <item id="toc_html" media-type="application/xhtml+xml" href="toc.html"/>
+    {% for chapter in chapters %}
+        {% set i = loop.index %}
+        <item id="chapter_{{i}}" media-type="application/xhtml+xml" href="{{chapter.title}}"/>
+    {% endfor %}
+    </manifest>
+
+    <spine toc="toc">
+        <itemref idref="toc_html"/>
+    {% for h in chapters %}
+        {% set i = loop.index %}
+        <itemref idref="chapter_{{i}}"/>
+    {% endfor %}
+    </spine>
+
+    <guide>
+        <reference type="toc" title="Table of Contents" href="toc.html"/>
+        <reference type="text" title="{{chapters[0].title}}" href="{{chapters[0].path}}"/>
+    </guide>
+
+</package>

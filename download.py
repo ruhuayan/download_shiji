@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 import urllib.parse
 import re
 import os
-from kindle_maker import Ebook
+from ebook import Ebook
 
 BASE_URL = 'https://www.thn21.com'
 PATH_HTML = 'html'
@@ -14,12 +14,12 @@ soup = BeautifulSoup(page.content, 'html.parser')
 
 links = soup.find_all('a', class_='liebiao')
 title = '史记'
-ebook = Ebook(title)
+ebook = Ebook(PATH_MOBI, title)
 
 for link in links:
     print(link)
     filename = link.get_text()
-    filePath = os.path.join(PATH_HTML, '{}.html'.format(filename))
+    filePath = os.path.join(ebook.output_path, PATH_HTML, '{}.html'.format(filename))
     
     if os.path.isfile(filePath):
         ebook.create_chapter(filename, filePath)
@@ -47,14 +47,9 @@ for link in links:
             soup.head.link.extract()
         soup.body.append(c)
         
-        with open(filePath, 'w') as f:
+        with open(filePath, mode='w', encoding='utf-8') as f:
             f.write(soup.prettify())
-            chapter = ebook.create_chapter(filename, filePath)
-
-fn = os.path.join(PATH_MOBI, '{}.mobi'.format(title))
-with open(fn, 'w') as f:
-    for link in links:
-        f.write('# {}\n'.format(link.get_text()))     
-ebook.save(fn)
+            ebook.create_chapter(filename, filePath) 
+ebook.save()
 
 
