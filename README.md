@@ -9,7 +9,9 @@ https://calibre-ebook.com/download_linux
 
 ## 安装 python 环境
 python -m venv venv
+
 source venv/bin/activate
+
 pip install requirements.txt
 
 ## 运行 下载程序
