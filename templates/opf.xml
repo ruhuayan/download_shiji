@@ -12,6 +12,8 @@
         <item id="cover_image" href="cover.jpg" media-type="image/jpeg"/>
         <item id="toc" media-type="application/x-dtbncx+xml" href="toc.ncx"/>
         <item id="toc_html" media-type="application/xhtml+xml" href="toc.html"/>
+        <!-- <item id="table-of-contents" properties="nav" href="toc.html" media-type="application/xhtml+xml"/>
+        <item id="html" href="{{ title }}.html" media-type="text/x-oeb1-document"/> -->
     {% for chapter in chapters %}
         {% set i = loop.index %}
         <item id="chapter_{{i}}" media-type="application/xhtml+xml" href="{{chapter.title}}"/>

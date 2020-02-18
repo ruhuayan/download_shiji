@@ -54,7 +54,7 @@ def download_onefile():
     </html>
     '''.format(title)
     soup_doc = BeautifulSoup(doc, 'html.parser')
-
+    index = 0
     for link in links:
         print(link)
         chapter_name = link.get_text()
@@ -62,7 +62,8 @@ def download_onefile():
         soup = BeautifulSoup(page.content, 'html.parser', from_encoding="gb18030")
 
         # create chapter header
-        chapter_header = BeautifulSoup('<h2>{}</h2>'.format(chapter_name))
+        index = index + 1
+        chapter_header = BeautifulSoup('<mbp:pagebreak/><h2 id="chapter-{}">{}</h2>'.format(index, chapter_name))
         soup_doc.body.append(chapter_header)
 
         c = get_content(soup)
