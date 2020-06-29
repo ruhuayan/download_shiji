@@ -18,11 +18,11 @@
         </navPoint>
     {% for chapter in chapters %}
         {% set i = loop.index %}
-        <navPoint class="chapter" id="chapter_{{ i }}" playOrder="{{ chapter.play_order }}">
+        <navPoint class="chapter" id="{{ chapter.id }}" playOrder="{{ i + 1 }}">
             <navLabel>
                 <text>{{ chapter.title }}</text>
             </navLabel>
-            <content src="{{ chapter.path }}"/>
+            <content src="{{ file_name }}#{{ chapter.id }}"/>
         </navPoint>
     {% endfor %}
     </navMap>

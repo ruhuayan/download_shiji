@@ -8,7 +8,7 @@
     <nav epub:type="toc">
         <ol>
         {% for chapter in chapters %}
-            <li><a href="{{ chapter.path }}">{{ chapter.title }}</a></li>
+            <li><a href="{{ file_name }}#{{ chapter.id }}">{{ chapter.title }}</a></li>
         {% endfor %}
         </ol>
     </nav>

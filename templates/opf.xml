@@ -5,6 +5,7 @@
         <dc:title>{{ title }}</dc:title>
         <dc:language>zh-cn</dc:language>
         <dc:creator>{{ author }}</dc:creator>
+        <dc:Publisher>{{ author }}</dc:Publisher>
         <meta name="cover" content="cover_image"/>
     </metadata>
 
@@ -12,25 +13,18 @@
         <item id="cover_image" href="cover.jpg" media-type="image/jpeg"/>
         <item id="toc" media-type="application/x-dtbncx+xml" href="toc.ncx"/>
         <item id="toc_html" media-type="application/xhtml+xml" href="toc.html"/>
-        <!-- <item id="table-of-contents" properties="nav" href="toc.html" media-type="application/xhtml+xml"/>
-        <item id="html" href="{{ title }}.html" media-type="text/x-oeb1-document"/> -->
-    {% for chapter in chapters %}
-        {% set i = loop.index %}
-        <item id="chapter_{{i}}" media-type="application/xhtml+xml" href="{{chapter.title}}"/>
-    {% endfor %}
+        <item id="table-of-contents" properties="nav" href="toc.html" media-type="application/xhtml+xml"/>
+        <item id="html" href="{{ file_name }}" media-type="text/x-oeb1-document"/>
     </manifest>
 
-    <spine toc="toc">
-        <itemref idref="toc_html"/>
-    {% for h in chapters %}
-        {% set i = loop.index %}
-        <itemref idref="chapter_{{i}}"/>
-    {% endfor %}
+    <spine>
+        <itemref idref="table-of-contents"/>
+        <itemref idref="html"/>
     </spine>
 
     <guide>
         <reference type="toc" title="Table of Contents" href="toc.html"/>
-        <reference type="text" title="{{chapters[0].title}}" href="{{chapters[0].path}}"/>
+        <reference type="text" title="Beginning" href="toc.html"/>
     </guide>
 
 </package>
