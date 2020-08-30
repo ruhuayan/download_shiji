@@ -1,12 +1,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <meta charset="UTF-8"/>
     <title>{{ title }}</title>
 </head>
 <body>
     {% for chapter in chapters %}
         <mbp:pagebreak />
-        <h2 id="{{chapter.id}}">{chapter.title}</h2>
+        <h2 id="{{chapter.id}}">{{chapter.title}}</h2>
         {{ chapter.content }}
     {% endfor %}
 </body>
