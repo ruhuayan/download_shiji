@@ -2,4 +2,5 @@ venv/
 #html
 kindlegen
 mobi
+output/
 .vscode
