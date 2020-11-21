@@ -16,10 +16,15 @@ pip install requirements.txt
 
 ## 运行 下载程序 (Commands to download)
 python download_shiji.py  # 史记
+
 python download_friti.py  # 丰乳肥臀
+
 python download_jpm.py    # 金瓶梅
+
 python download_xyj.py    # 西游记
+
 python download_zztj.py   # 资治通鉴
+
 python download_zzyz.py   # 庄子译注
 
 
