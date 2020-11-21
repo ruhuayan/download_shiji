@@ -1,20 +1,25 @@
-# download_shiji
-下载史记 转为 kindle mobi 文件
+# 介绍 (Introduction)
+一键 下载 中国 古典文学 转为 kindle mobi 文件
 
-目前该 程序用 download_onefile() 下载史记后 编写在 一个 html 文件上,
-如果想 加入 封面，图片 和 章节等，用 download()
+如果想放上 封面图片，请把图片放在 template/cover.jpg， 并且 uncomment 
+#self.save_cover()
 
-## 安装 calibre (ebook-convert) 
+## 安装 calibre (install ebook-convert) 
 https://calibre-ebook.com/download_linux
 
-## 安装 python 环境
+## 安装 python 环境 (python environment setup)
 python -m venv venv
 
 source venv/bin/activate
 
 pip install requirements.txt
 
-## 运行 下载程序
-python download.py
+## 运行 下载程序 (Commands to download)
+python download_shiji.py  # 史记
+python download_friti.py  # 丰乳肥臀
+python download_jpm.py    # 金瓶梅
+python download_xyj.py    # 西游记
+python download_zztj.py   # 资治通鉴
+python download_zzyz.py   # 庄子译注
 
 
