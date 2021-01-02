@@ -9,7 +9,7 @@ class Chapter:
     index = 0
     def __init__(self, title: str):
         Chapter.index = Chapter.index + 1
-        self.id = 'chapter_{}'.format(Chapter.index)
+        self.id = f'chapter_{Chapter.index}'
         self.title = title
 
     def set_content(self, content):
@@ -17,11 +17,11 @@ class Chapter:
 
 class Ebook:
 
-    def __init__(self, path: str, title: str, author = 'ruhuayan.github.io'):
-        self.output_path = path
+    def __init__(self, title: str, author = 'ruhuayan.github.io'):
         self.title = title
+        self.output_path = f'output/{title}'
         self.author = author
-        self.file_name = '{}.html'.format(title)
+        self.file_name = f'{title}.html'
         self._templates_env = Environment(loader=FileSystemLoader(
             str(pathlib.Path(__file__).parent / 'templates/')))
         
@@ -62,7 +62,7 @@ class Ebook:
 
     ''' Create main ebook html file '''
     def _render_main(self) -> str:
-        html = '{}.html'.format(self.title)
+        html = f'{self.title}.html'
         self._render_file(
             'template.html',
             {
@@ -93,7 +93,7 @@ class Ebook:
         return toc
 
     def _render_opf(self) -> str:
-        opf_file = '{}.opf'.format(self.title)
+        opf_file = f'{self.title}.opf'
         self._render_file(
             'opf.xml',
             {
@@ -113,7 +113,7 @@ class Ebook:
         opf_file = self._render_opf()
         #self.save_cover()
         rc = subprocess.call([
-            'ebook-convert', os.path.join(self.output_path, opf_file), os.path.join(self.output_path, '{}.mobi'.format(self.title)) 
+            'ebook-convert', os.path.join(self.output_path, opf_file), os.path.join(self.output_path, f'{self.title}.mobi') 
         ])
         if rc != 0:
             raise Exception('ebook-convert failed')

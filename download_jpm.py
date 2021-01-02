@@ -5,7 +5,6 @@ import os
 from ebook import Chapter, Ebook
 
 BASE_URL = 'https://zh.m.wikisource.org/wiki/%E9%87%91%E7%93%B6%E6%A2%85'
-PATH_HTML = 'output/jpm'
 
 page = requests.get(BASE_URL)
 soup = BeautifulSoup(page.content, 'html.parser')
@@ -15,7 +14,7 @@ title = '金瓶梅'
 
 def download():
     
-    ebook = Ebook(PATH_HTML, title)
+    ebook = Ebook(title)
 
     for link in links:
         print(link)

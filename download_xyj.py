@@ -5,7 +5,7 @@ import os
 from ebook import Chapter, Ebook
 
 BASE_URL = 'http://www.dushu369.com'
-PATH_HTML = 'output/xyj'
+
 page = requests.get('http://www.dushu369.com/gudianmingzhu/xyj/')
 soup = BeautifulSoup(page.content, 'html.parser', from_encoding="gb18030")
 
@@ -14,7 +14,7 @@ title = '西游记'
 
 def download():
     
-    ebook = Ebook(PATH_HTML, title)
+    ebook = Ebook(title)
 
     for link in links:
         print(link)

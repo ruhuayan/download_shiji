@@ -5,8 +5,6 @@ import os
 from ebook import Chapter, Ebook
 
 BASE_URL = 'https://www.thn21.com'
-PATH_HTML = 'output'
-PATH_MOBI = 'mobi'
 page = requests.get('https://www.thn21.com/wen/famous/27038.html')
 soup = BeautifulSoup(page.content, 'html.parser')
 
@@ -15,7 +13,7 @@ title = '史记'
 
 def download():
     
-    ebook = Ebook(PATH_HTML, title)
+    ebook = Ebook(title)
 
     for link in links:
         print(link)
@@ -51,14 +49,6 @@ def download():
         ebook.add_chapter(chapter)
 
     ebook.save()
-    # with open(file_path, mode='w', encoding='utf-8') as f:
-    #         f.write(soup_doc.prettify())
-    # ebook-convert html to mobi
-    # rc = subprocess.call([
-    #     'ebook-convert', file_path, os.path.join(PATH_HTML, '{}.mobi'.format(title)) 
-    # ])
-    # if rc != 0:
-    #     raise Exception('ebook-convert failed')
     
 def get_content(soup):
     # get page content
